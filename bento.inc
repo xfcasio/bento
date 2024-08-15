@@ -99,5 +99,7 @@ macro puts string {
     cmp byte [rsi], 0
     jne .loop
   @@
+
+  write STDOUT, newline, 1
   popa64
 }

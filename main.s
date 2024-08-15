@@ -8,18 +8,11 @@ entry $
     write STDOUT, newline, 1
   @done
 
-  mov rbx, [nums.len]
-  add rbx, 47
-  write STDOUT, rbx, 1 
-  write STDOUT, newline, 1
-
-  puts nums
-  write STDOUT, newline, 1
-
+  puts hello_world
   exit 0
 @@
 
 segment readable writeable 
-@mkstr hello_world, <"Hello, World", 0xA, 0>
-@mkstr nums, <"123456789", 0>
+@mkstr hello_world, <"Hello, World", 0>
+@mkstr nums, "123456789"
 newline: db 0xA
