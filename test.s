@@ -3,6 +3,9 @@ include 'bento.inc'
 
 segment executable readable
 entry $
+  @mkstr hello_world, <"Hello, World", 0>
+  @mkstr nums, "123456789"
+
   @iter1 r8, 0, 9
     @iter2 rax, 0, 9
       @iter3 rbx, 0, 9
@@ -20,7 +23,5 @@ entry $
 @@
 
 segment readable writeable 
-@mkstr hello_world, <"Hello, World", 0>
-@mkstr nums, "123456789"
 dummy: dq 0
 newline: db 0xA

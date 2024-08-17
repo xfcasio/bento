@@ -1,9 +1,9 @@
 macro @mkstr name, string {
   local __mkstr
+  call __mkstr
+  name db string
+  name#.len dq $ - name
   __mkstr:
-    name db string
-    name#.len dq $-__mkstr
-  @@
 }
 
 macro puts string {
