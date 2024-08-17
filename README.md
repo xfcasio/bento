@@ -2,7 +2,7 @@
 A collection of macros intended at making assembly more convenient to write and a bit closer to C. Only for x86_64 linux and the FASM assembler (for now).
 
 <h2> Example: </h2>
-```x86asm
+```
 format ELF64 executable 3
 include 'bento.inc'
 
