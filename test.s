@@ -3,17 +3,17 @@ include 'bento.inc'
 
 segment executable readable
 entry $
-  @iter0 r8, 0, 1
-    @iter1 rax, 0, 1
-      @iter2 rbx, 0, 1
+  @iter1 r8, 0, 1
+    @iter2 rax, 0, 1
+      @iter3 rbx, 0, 1
         mov qword [dummy], rbx
         add qword [dummy], 48
         write STDOUT, dummy, 1
-      @done2
+      @done3
       write STDOUT, newline, 1
-    @done1
+    @done2
     write STDOUT, newline, 1
-  @done0
+  @done1
 
   puts hello_world
   exit 0
