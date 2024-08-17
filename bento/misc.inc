@@ -17,8 +17,6 @@ macro puts string {
     cmp byte [rbx], 0
     jne .loop
   @@
-
-  write STDOUT, newline, 1
   popa64
 }
 
