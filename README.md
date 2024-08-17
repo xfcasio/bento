@@ -10,7 +10,10 @@ include 'bento.inc'
 
 segment executable readable
 entry $
-  ;; 3 default copies of the @iter macro to allow sound nesting
+  @mkstr hello_world, <"Hello, World", 0>
+  @mkstr nums, "123456789"
+
+  ;; 3 copies of @iter macro for sound nesting
   @iter1 r8, 0, 9
     @iter2 rax, 0, 9
       @iter3 rbx, 0, 9
@@ -28,8 +31,6 @@ entry $
 @@
 
 segment readable writeable 
-@mkstr hello_world, <"Hello, World", 0>
-@mkstr nums, "123456789"
 dummy: dq 0
 newline: db 0xA
 ```
