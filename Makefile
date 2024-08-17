@@ -1,3 +1,3 @@
-test: main.s
-	fasm main.s
+test: test.s
+	fasm test.s
 
