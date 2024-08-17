@@ -4,7 +4,7 @@ A collection of macros intended at making assembly more convenient to write and 
 <h2> Example: </h2>
 
 
-```
+```x86asm
 format ELF64 executable 3
 include 'bento.inc'
 
@@ -35,6 +35,8 @@ newline: db 0xA
 ```
 
 <h3>simply compile with:<h3>
+
+
 ```
 fasm main.s
 ./main
