@@ -3,9 +3,9 @@ include 'bento.inc'
 
 segment executable readable
 entry $
-  @iter1 r8, 0, 1
-    @iter2 rax, 0, 1
-      @iter3 rbx, 0, 1
+  @iter1 r8, 0, 9
+    @iter2 rax, 0, 9
+      @iter3 rbx, 0, 9
         mov qword [dummy], rbx
         add qword [dummy], 48
         write STDOUT, dummy, 1
