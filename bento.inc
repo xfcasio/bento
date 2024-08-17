@@ -57,14 +57,44 @@ macro exit c {
   syscall
 }
 
-macro @iter counter_reg, a, b {
+macro @iter2 counter_reg, a, b {
   local __loop
-  mov r10, b
-  inc r10
+  mov r15, b
+  inc r15
 
-  macro @done \{
+  macro @done2 \{
     inc counter_reg
-    cmp counter_reg, r10
+    cmp counter_reg, r15
+    jne __loop
+  \}
+
+  mov counter_reg, a
+  __loop:
+}
+
+macro @iter1 counter_reg, a, b {
+  local __loop
+  mov r15, b
+  inc r15
+
+  macro @done1 \{
+    inc counter_reg
+    cmp counter_reg, r15
+    jne __loop
+  \}
+
+  mov counter_reg, a
+  __loop:
+}
+
+macro @iter0 counter_reg, a, b {
+  local __loop
+  mov r15, b
+  inc r15
+
+  macro @done0 \{
+    inc counter_reg
+    cmp counter_reg, r15
     jne __loop
   \}
 
@@ -81,11 +111,13 @@ macro @mkstr name, string {
 }
 
 macro write fd, string, strlen {
+  pusha64
   mov rdx, strlen
   mov rsi, string
   mov rdi, fd
   mov rax, SYSCALL_WRITE
   syscall
+  popa64
 }
 
 macro puts string {
@@ -96,7 +128,7 @@ macro puts string {
     write STDOUT, rbx, 1
 
     inc rbx
-    cmp byte [rsi], 0
+    cmp byte [rbx], 0
     jne .loop
   @@
 
