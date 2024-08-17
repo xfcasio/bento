@@ -34,7 +34,7 @@ dummy: dq 0
 newline: db 0xA
 ```
 
-<h3>simply compile with:<h3>
+<h3>compile with:<h3>
 
 
 ```
