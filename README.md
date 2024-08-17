@@ -38,6 +38,6 @@ newline: db 0xA
 
 
 ```
-fasm main.s
-./main
+$ fasm main.s
+$ ./main
 ```
