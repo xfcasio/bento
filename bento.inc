@@ -7,3 +7,4 @@ STDERR equ 2
 include 'bento/syscalls.inc'
 include 'bento/iteration.inc'
 include 'bento/misc.inc'
+include 'bento/if.inc'
