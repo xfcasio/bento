@@ -1,5 +1,5 @@
 format ELF64 executable 3
-include 'bento.inc'
+include '../bento.inc'
 
 segment executable readable
 entry $
