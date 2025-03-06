@@ -1,23 +1,34 @@
 macro @mkstr name, string {
   local __mkstr
-  call __mkstr
-  name db string
-  name#.len dq $ - name
+  jmp __mkstr
+  name:
+    .data db string
+    .len dq $ - name#.data
   __mkstr:
 }
 
 macro puts string {
   local .loop
-  pusha64
-  mov rbx, string
+  push rbx
+  push rax
+
+  lea rbx, [string#.data]
+  sub rsp, 8
+  mov rax, [string#.len]
+  mov QWORD [rsp], rax
+
   .loop:
     write STDOUT, rbx, 1
 
     inc rbx
-    cmp byte [rbx], 0
-    jne .loop
+    dec QWORD [rsp]
+    jnz .loop
   @@
-  popa64
+
+  add rsp, 8
+  
+  pop rax
+  pop rbx
 }
 
 macro pusha64 {
