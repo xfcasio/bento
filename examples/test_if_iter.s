@@ -3,7 +3,7 @@ include '../bento.inc'
 
 segment executable readable
 entry $
-  @mkstr hello_world, <"Hello, World", 0>
+  @mkstr hello_world, "Hello, World"
   @mkstr nums, "123456789"
 
   xor eax, eax
