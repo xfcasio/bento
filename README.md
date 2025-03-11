@@ -38,7 +38,7 @@ newline: db 0xA
 ```
 
 > [!IMPORTANT]  
-> Using any macros that make and modify labels like @for (the counter is a label) requires that the executable (current) segment be also writeable.
+> Using any macros that make and modify labels like `@for` (the counter is a label) requires that the executable (current) segment be also writeable.
 
 <h3>compile with:<h3>
 
