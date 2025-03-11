@@ -341,13 +341,19 @@ macro exit c {
 
 
 macro write fd, string, strlen {
-  pusha64
+  push rdx
+  push rsi
+  push rdi
+  push rax
+
   mov rdx, strlen
   mov rsi, string
   mov rdi, fd
   mov rax, SYSCALL_WRITE
   syscall
-  popa64
+
+  pop rax
+  pop rdi
+  pop rsi
+  pop rdx
 }
-
-

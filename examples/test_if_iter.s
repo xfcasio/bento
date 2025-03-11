@@ -1,24 +1,24 @@
 format ELF64 executable 3
 include '../bento.inc'
 
-segment executable readable
+segment executable readable writeable
 entry $
   @mkstr hello_world, "Hello, World"
-  @mkstr nums, "123456789"
 
   xor eax, eax
   .if (eax = 0)
-    @iter1 r8, 0, 9
-      @iter2 rax, 0, 9
-        @iter3 rbx, 0, 9
-          mov qword [dummy], rbx
-          add qword [dummy], 48
+    @for i, 0, 9
+      @for j, 0, 9
+        @for k, 0, 9
+          mov r14, QWORD [k]
+          mov QWORD [dummy], r14
+          add QWORD [dummy], 48
           write STDOUT, dummy, 1
-        @done3
+        @k
         write STDOUT, newline, 1
-      @done2
+      @j
       write STDOUT, newline, 1
-    @done1
+    @i
   .endif
 
   puts hello_world

@@ -1,10 +1,22 @@
 macro @mkstr name, string {
-  local __mkstr
+  local __mkstr, data
   jmp __mkstr
+  data db string
   name:
-    .data db string
-    .len dq $ - name#.data
+    .len dq $ - data
+    .ptr dq ?
   __mkstr:
+  lea r15, [data]
+  mov QWORD [name#.ptr], r15
+}
+
+macro @open_data {
+  local data_label
+  jmp data_label
+
+  macro @end_data \{
+    data_label:
+  \}
 }
 
 macro puts string {
@@ -12,7 +24,7 @@ macro puts string {
   push rbx
   push rax
 
-  lea rbx, [string#.data]
+  mov rbx, QWORD [string#.ptr]
   sub rsp, 8
   mov rax, [string#.len]
   mov QWORD [rsp], rax
@@ -30,49 +42,3 @@ macro puts string {
   pop rax
   pop rbx
 }
-
-macro pusha64 {
-  push rax
-  push rbx
-  push rcx
-  push rdx
-
-  push rsi
-  push rdi
-  
-  push rbp
-  push rsp
-
-  push r8
-  push r9
-  push r10
-  push r11
-  push r12
-  push r13
-  push r14
-  push r15
-}
-
-macro popa64 {
-  pop r15
-  pop r14
-  pop r13
-  pop r12
-  pop r11
-  pop r10
-  pop r9
-  pop r8
-
-  pop rsp
-  pop rbp
-
-  pop rdi
-  pop rsi
-  
-  pop rdx
-  pop rcx
-  pop rbx
-  pop rax
-}
-
-
